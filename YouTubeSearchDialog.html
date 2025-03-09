@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+&lthtml>
+&lthead>
+  &ltbase target="_top">
+  &ltstyle>
+    body { font-family: sans-serif; }
+    .container { padding: 20px; }
+    label { display: block; margin-bottom: 5px; }
+    input[type="text"], input[type="number"] { width: 200px; padding: 5px; margin-bottom: 10px; }
+    button { padding: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+  &lt/style>
+&lt/head>
+&ltbody>
+  &ltdiv class="container">
+    &ltlabel for="category">Category:&lt/label>
+    &ltinput type="text" id="category" placeholder="e.g., cricket">
+    &ltbr>
+    &ltlabel for="maxResults">Max Results:&lt/label>
+    &ltinput type="number" id="maxResults" placeholder="e.g., 10">
+    &ltbr>
+    &ltbutton id="searchButton">Search&lt/button>
+  &lt/div>
+
+  &ltscript>
+    document.getElementById("searchButton").addEventListener("click", () => {
+      const category = document.getElementById("category").value;
+      const maxResults = parseInt(document.getElementById("maxResults").value, 10);
+
+      if (category && !isNaN(maxResults)) {
+        google.script.run.getVideoData(category, maxResults);
+      } else {
+        alert("Please enter a category and a valid number for max results.");
+      }
+    });
+  &lt/script>
+&lt/body>
+&lt/html>
